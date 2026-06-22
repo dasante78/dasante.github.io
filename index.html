@@ -1,9 +1,542 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>My Personal Website</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daniel Prakah-Asante</title>
+  <meta name="description" content="Personal website and index of papers, projects, and code by Daniel Prakah-Asante." />
+  <meta property="og:title" content="Daniel Prakah-Asante" />
+  <meta property="og:description" content="AI/ML research, papers, projects, and code." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --surface: #ffffff;
+      --surface-soft: #f1f4f8;
+      --text: #172033;
+      --muted: #667085;
+      --line: #dde3ec;
+      --line-strong: #c9d2df;
+      --accent: #1f4e79;
+      --accent-strong: #173a59;
+      --accent-soft: #e7f0f8;
+      --gold: #a66b1f;
+      --shadow-sm: 0 1px 2px rgba(16, 24, 40, .05);
+      --shadow-md: 0 18px 45px rgba(16, 24, 40, .08);
+      --radius: 18px;
+      --max: 1120px;
+      color-scheme: light;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        linear-gradient(180deg, rgba(31,78,121,.055), transparent 310px),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-strong); text-decoration: underline; text-underline-offset: 3px; }
+
+    .wrap { width: min(var(--max), calc(100% - 44px)); margin: 0 auto; }
+
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 12px;
+      padding: 10px 12px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+    .skip-link:focus { left: 12px; z-index: 10; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: rgba(247, 248, 251, .88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+      font-weight: 750;
+      letter-spacing: -.02em;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 13px;
+      letter-spacing: .02em;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .navlinks a {
+      color: var(--muted);
+      padding: 9px 11px;
+      border-radius: 999px;
+      text-decoration: none;
+    }
+    .navlinks a:hover { background: var(--surface); color: var(--text); box-shadow: var(--shadow-sm); }
+
+    .hero {
+      padding: 82px 0 56px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr);
+      gap: 54px;
+      align-items: center;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 760;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .kicker::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--accent);
+      opacity: .75;
+    }
+
+    h1, h2, h3 { color: var(--text); }
+    h1 {
+      margin: 0;
+      max-width: 860px;
+      font-size: clamp(42px, 6.3vw, 78px);
+      line-height: .99;
+      letter-spacing: -.065em;
+    }
+
+    .subtitle {
+      margin: 24px 0 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 21px);
+    }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: var(--shadow-sm);
+      text-decoration: none;
+      transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+    }
+    .button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .button:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); text-decoration: none; }
+    .button.primary:hover { color: #fff; background: var(--accent-strong); }
+
+    .profile-card {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.84);
+      border-radius: 24px;
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+    .profile-top {
+      padding: 28px;
+      background:
+        linear-gradient(135deg, rgba(31,78,121,.10), rgba(166,107,31,.08)),
+        var(--surface);
+      border-bottom: 1px solid var(--line);
+    }
+    .portrait {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 25px;
+      font-weight: 760;
+      letter-spacing: -.02em;
+    }
+    .profile-card h2 { margin: 0 0 8px; font-size: 22px; letter-spacing: -.03em; }
+    .profile-card p { margin: 0; color: var(--muted); }
+
+    .facts { display: grid; margin: 0; padding: 6px 28px 24px; list-style: none; }
+    .facts li {
+      display: grid;
+      grid-template-columns: 108px 1fr;
+      gap: 18px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .facts li:last-child { border-bottom: 0; }
+    .facts strong { color: var(--text); font-size: 13px; text-transform: uppercase; letter-spacing: .07em; }
+
+    section { padding: 58px 0; }
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr minmax(260px, 520px);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 26px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-head h2 { margin: 0; font-size: clamp(28px, 4vw, 44px); line-height: 1; letter-spacing: -.045em; }
+    .section-head p { margin: 0; color: var(--muted); }
+
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .card {
+      grid-column: span 6;
+      display: flex;
+      flex-direction: column;
+      min-height: 280px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow-sm);
+      transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--line-strong); }
+    .card.featured {
+      grid-column: span 12;
+      min-height: 300px;
+      padding: 30px;
+      background:
+        linear-gradient(135deg, rgba(31,78,121,.07), rgba(255,255,255,0) 55%),
+        var(--surface);
+    }
+    .card h3 { margin: 0 0 12px; font-size: 24px; line-height: 1.18; letter-spacing: -.025em; }
+    .card.featured h3 { font-size: clamp(28px, 3.4vw, 38px); max-width: 900px; }
+    .card p { margin: 0 0 20px; color: var(--muted); }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface-soft);
+      color: #46566c;
+      font-size: 12px;
+      font-weight: 650;
+    }
+    .tag.paper { background: var(--accent-soft); color: var(--accent-strong); border-color: #c9dced; }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 8px;
+    }
+    .links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      font-weight: 750;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .links a::after { content: "↗"; font-size: 12px; transform: translateY(-1px); }
+    .links a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .about-item {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: var(--shadow-sm);
+    }
+    .about-item h3 { margin: 0 0 10px; font-size: 18px; letter-spacing: -.02em; }
+    .about-item p { margin: 0; color: var(--muted); }
+
+    .callout {
+      margin-top: 18px;
+      padding: 22px;
+      border: 1px dashed var(--line-strong);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.62);
+      color: var(--muted);
+    }
+    .callout strong { color: var(--text); }
+
+    footer {
+      margin-top: 34px;
+      padding: 34px 0 56px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    footer .wrap { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+
+    @media (max-width: 880px) {
+      nav { align-items: flex-start; flex-direction: column; padding: 16px 0; }
+      .hero { grid-template-columns: 1fr; padding-top: 56px; gap: 32px; }
+      .section-head { grid-template-columns: 1fr; gap: 10px; }
+      .card, .card.featured { grid-column: span 12; }
+      .about-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { width: min(var(--max), calc(100% - 28px)); }
+      .navlinks { gap: 0; }
+      .navlinks a { padding: 8px 9px; }
+      .hero { padding: 44px 0 38px; }
+      h1 { font-size: clamp(38px, 12vw, 56px); }
+      section { padding: 42px 0; }
+      .profile-top, .card, .card.featured, .about-item, .callout { padding: 20px; }
+      .facts { padding: 4px 20px 18px; }
+      .facts li { grid-template-columns: 1fr; gap: 4px; }
+    }
+
+    @media print {
+      header, .actions, footer { display: none; }
+      body { background: #fff; }
+      .card, .about-item, .profile-card { box-shadow: none; break-inside: avoid; }
+      a { color: #000; text-decoration: underline; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Daniel Prakah-Asante",
+    "url": "https://dasante78.github.io/",
+    "sameAs": [
+      "https://github.com/dasante78",
+      "https://www.linkedin.com/in/daniel-prakah-asante",
+      "https://ecgfix.csail.mit.edu/"
+    ],
+    "knowsAbout": ["machine learning", "clinical AI", "ECG representation learning", "computer vision", "robotics"]
+  }
+  </script>
 </head>
 <body>
-    <h1>Welcome to My Website!</h1>
-    <p>This page is hosted for free on 
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header>
+    <nav class="wrap" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Daniel Prakah-Asante home">
+        <span class="brand-mark" aria-hidden="true">DP</span>
+        <span>Daniel Prakah-Asante</span>
+      </a>
+      <div class="navlinks">
+        <a href="#papers">Papers</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="https://github.com/dasante78">GitHub</a>
+        <a href="https://www.linkedin.com/in/daniel-prakah-asante">LinkedIn</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="content">
+    <div class="wrap hero" id="top">
+      <div>
+        <div class="kicker">AI/ML · Health · Robotics</div>
+        <h1>Machine learning systems for clinical and embodied intelligence.</h1>
+        <p class="subtitle">I’m Daniel Prakah-Asante, an MIT AI/ML researcher working across ECG representation learning, clinical decision support, computer vision, and robotics. This page collects selected papers, code, demos, and project writeups.</p>
+        <div class="actions" aria-label="Primary links">
+          <a class="button primary" href="#papers">View papers</a>
+          <a class="button" href="#projects">Browse projects</a>
+          <a class="button" href="mailto:doprakah@mit.edu">Contact</a>
+        </div>
+      </div>
+
+      <aside class="profile-card" aria-label="Profile summary">
+        <div class="profile-top">
+          <div class="portrait" aria-hidden="true">DP</div>
+          <h2>Selected public work</h2>
+          <p>Research and engineering projects in clinical AI, computer vision, robotics, and TinyML.</p>
+        </div>
+        <ul class="facts">
+          <li><strong>Focus</strong><span>AI for health; representation learning</span></li>
+          <li><strong>Affiliation</strong><span>MIT CSAIL &amp; MGH</span></li>
+          <li><strong>Code</strong><span><a href="https://github.com/dasante78">github.com/dasante78</a></span></li>
+          <li><strong>Email</strong><span>doprakah [at] mit [dot] edu</span></li>
+        </ul>
+      </aside>
+    </div>
+
+    <section id="papers" aria-labelledby="papers-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="papers-title">Papers</h2>
+          <p>Research papers and accompanying project pages, preprints, and reproducibility code.</p>
+        </div>
+        <div class="grid">
+          <article class="card featured">
+            <div class="meta">
+              <span class="tag paper">ICML 2026 position track</span>
+              <span class="tag paper">ECG representation learning</span>
+              <span class="tag paper">Equal contribution</span>
+            </div>
+            <h3>Position: Evaluation of ECG Representations Must Be Fixed</h3>
+            <p>Zachary Berger, Daniel Prakah-Asante, John Guttag, and Collin M. Stultz. A position paper arguing that ECG representation benchmarks should better reflect clinically meaningful objectives, including structural disease, patient-level forecasting, and standardized evaluation practices for imbalanced multi-label settings.</p>
+            <div class="links">
+              <a href="https://ecgfix.csail.mit.edu/">Project page</a>
+              <a href="https://arxiv.org/abs/2602.17531">arXiv</a>
+              <a href="https://github.com/zackeberger/ecg-fix">Code</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="projects-title">Projects</h2>
+          <p>Public project pages, repositories, demos, and class/research projects.</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <div class="meta"><span class="tag">Computer vision</span><span class="tag">Adversarial ML</span><span class="tag">2024</span></div>
+            <h3>Generative Adversarial Masks</h3>
+            <p>Safeguarding Images from AI Models with Stealthy Perturbations. Developed SPAM, a system for image-specific perturbations that preserve visual quality while reducing downstream model performance.</p>
+            <div class="links">
+              <a href="https://github.com/aileenliao03/Generative-Adversarial-Masks">GitHub</a>
+              <a href="https://aileenliao03.github.io/portfolio/portfolio-66/">Project page</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="meta"><span class="tag">Robotics</span><span class="tag">Control</span><span class="tag">2023</span></div>
+            <h3>Robotic Soccer Goalie</h3>
+            <p>Evaluation of learning and physics-based controllers for dynamic tasks. Compared classical trajectory prediction, sampling-based strategies, and recurrent/Neural ODE models in simulated goalkeeper scenarios.</p>
+            <div class="links">
+              <a href="https://github.com/aileenliao03/robotgoalie">GitHub</a>
+              <a href="https://www.youtube.com/watch?v=vOyx8mRKQsE">Video</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="meta"><span class="tag">Clinical AI</span><span class="tag">Open source</span><span class="tag">2026</span></div>
+            <h3>ECG-Fix Reproducibility Code</h3>
+            <p>Code and experiments supporting the ECG-Fix paper, including evaluation pipelines across public ECG datasets, pretrained encoder comparisons, and random baseline experiments.</p>
+            <div class="links">
+              <a href="https://github.com/zackeberger/ecg-fix">GitHub</a>
+              <a href="https://ecgfix.csail.mit.edu/">Website</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="meta"><span class="tag">TinyML</span><span class="tag">Repository</span></div>
+            <h3>ATR_TinyML</h3>
+            <p>TinyML project repository. Add a short project abstract here once you decide how public-facing you want the description to be.</p>
+            <div class="links">
+              <a href="https://github.com/dasante78/ATR_TinyML">GitHub</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="meta"><span class="tag">Website</span><span class="tag">GitHub Pages</span></div>
+            <h3>Personal Website Repo</h3>
+            <p>Source repository for a GitHub Pages personal site. Replace its current index with this page, or merge selected sections into your existing layout.</p>
+            <div class="links">
+              <a href="https://github.com/dasante78/dasante.github.io">GitHub</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="about-title">About</h2>
+          <p>A concise professional summary you can customize as your publication and project list grows.</p>
+        </div>
+        <div class="about-grid">
+          <article class="about-item">
+            <h3>Research interests</h3>
+            <p>Machine learning for clinical decision-making, disease prediction, ECG representation learning, computer vision, and embodied intelligence.</p>
+          </article>
+          <article class="about-item">
+            <h3>Earlier work</h3>
+            <p>Pulmonary Diseases Detection Assistant with Deep Learning Algorithms — recognized at the 2020 Science and Engineering Fair of Metropolitan Detroit.</p>
+          </article>
+          <article class="about-item">
+            <h3>Growing index</h3>
+            <p>Add private, in-progress, or not-yet-indexed work here. Each card only needs a title, one-line summary, year, collaborators, and links.</p>
+          </article>
+        </div>
+        <div class="callout">
+          <strong>Editing note:</strong> replace placeholder descriptions with final abstracts, add PDFs where available, and add a headshot by replacing the “DP” portrait block with an image.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 Daniel Prakah-Asante</span>
+      <span>Lightweight GitHub Pages portfolio index.</span>
+    </div>
+  </footer>
+</body>
+</html>
