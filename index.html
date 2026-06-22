@@ -235,6 +235,307 @@
         <li><a href="https://github.com/dasante78">GitHub</a></li>
         <li><a href="https://www.linkedin.com/in/daniel-prakah-asante">LinkedIn</a></li>
         <li><a href="https://scholar.google.com/citations?view_op=list_works&amp;hl=en&amp;user=P2hWmVAAAAAJ">Google Scholar</a></li>
+        <li><a href="mailto:dprakahasante@alum.mit.edu">Contact</a></li>
+      </ul>
+    </aside>
+
+    <div>
+      <section id="about" aria-labelledby="about-title">
+        <h2 id="about-title">About</h2>
+        <p class="intro">I’m focused on building impactful technologies and applying AI in meaningful ways to solve real-world problems.</p>
+        <p>I am currently an AI engineer at <a href="https://www.distyl.ai/">Distyl AI</a>. Previously, I completed my BS at MIT in Artificial Intelligence and Decision-Making, followed by a Master of Engineering in the <a href="https://cb.mit.edu/">Computational Cardiovascular Research Group</a>, where I was advised by <a href="https://hst.mit.edu/faculty-research/faculty/stultz-collin">Collin Stultz</a>.</p>
+      </section>
+
+      <section id="papers" aria-labelledby="papers-title">
+        <h2 id="papers-title">Papers</h2>
+        <article class="entry">
+          <h3>Position: Evaluation of ECG Representations Must Be Fixed</h3>
+          <div class="venue">ICML 2026 position track</div>
+          <p>Daniel Prakah-Asante, Zachary Berger, John Guttag, and Collin M. Stultz. A position paper arguing that ECG representation benchmarks should better reflect clinically meaningful objectives, including structural disease, patient-level forecasting, and standardized evaluation practices for imbalanced multi-label settings.</p>
+          <div class="links">
+            <a href="https://ecgfix.csail.mit.edu/">Project page</a>
+            <a href="https://arxiv.org/abs/2602.17531">arXiv</a>
+            <a href="https://github.com/zackeberger/ecg-fix">Code</a>
+          </div>
+        </article>
+      </section>
+
+      <section id="projects" aria-labelledby="projects-title">
+        <h2 id="projects-title">Projects</h2>
+        <article class="entry">
+          <h3>Generative Adversarial Masks</h3>
+          <p>Safeguarding Images from AI Models with Stealthy Perturbations. Developed SPAM, a system for image-specific perturbations that preserve visual quality while reducing downstream model performance.</p>
+          <div class="links">
+            <a href="https://github.com/aileenliao03/Generative-Adversarial-Masks">GitHub</a>
+            <a href="https://aileenliao03.github.io/portfolio/portfolio-66/">Project page</a>
+          </div>
+        </article>
+
+        <article class="entry">
+          <h3>Robotic Soccer Goalie</h3>
+          <p>Evaluation of learning and physics-based controllers for dynamic tasks. Compared classical trajectory prediction, sampling-based strategies, and recurrent/Neural ODE models in simulated goalkeeper scenarios.</p>
+          <div class="links">
+            <a href="https://github.com/aileenliao03/robotgoalie">GitHub</a>
+            <a href="https://www.youtube.com/watch?v=vOyx8mRKQsE">Video</a>
+          </div>
+        </article>
+
+        <article class="entry">
+          <h3>Forget, Forget Me Not: Adaptive Token Retention for LLMs</h3>
+          <p>Explores adaptive token retention methods for reducing LLM sequence length and compute while preserving key information. The project compares random, MLP, CNN-MLP, RNN, and identity retention masks with reinforcement-learning based training and evaluation workflows.</p>
+          <div class="links">
+            <a href="https://github.com/dasante78/ATR_TinyML">GitHub</a>
+            <a href="https://youtu.be/R5pYuRFvbH0">Demo</a>
+          </div>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 Daniel Prakah-Asante</span>
+    </div>
+  </footer>
+</body>
+</html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daniel Prakah-Asante</title>
+  <meta name="description" content="Personal website and index of papers, projects, and code by Daniel Prakah-Asante." />
+  <meta property="og:title" content="Daniel Prakah-Asante" />
+  <meta property="og:description" content="AI/ML research, papers, projects, and code." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --bg: #fff;
+      --text: #222;
+      --muted: #666;
+      --line: #e5e5e5;
+      --accent: #3478a7;
+      --max: 1040px;
+      color-scheme: light;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.58;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    .wrap { width: min(var(--max), calc(100% - 36px)); margin: 0 auto; }
+
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 12px;
+      padding: 10px 12px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+    .skip-link:focus { left: 12px; z-index: 10; }
+
+    header {
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      color: var(--text);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 14px;
+    }
+    .navlinks a { color: var(--muted); }
+
+    h1, h2, h3 { color: var(--text); }
+    h1 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.15;
+    }
+
+    h2 {
+      margin: 38px 0 18px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    h3 {
+      margin: 0 0 4px;
+      font-size: 19px;
+      line-height: 1.25;
+    }
+
+    p { margin: 0 0 14px; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 230px minmax(0, 1fr);
+      gap: 54px;
+      padding: 42px 0 56px;
+      align-items: start;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 24px;
+    }
+
+    .headshot {
+      width: 190px;
+      max-width: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      margin-bottom: 18px;
+    }
+
+    .sidebar h1 {
+      font-size: 23px;
+      margin-bottom: 8px;
+    }
+
+    .bio {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .follow-title {
+      margin: 0 0 8px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .follow {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 14px;
+    }
+    .follow li { margin-bottom: 5px; }
+
+    .intro {
+      margin-top: 0;
+      font-size: 18px;
+    }
+
+    .entry {
+      margin-bottom: 28px;
+    }
+
+    .venue {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .entry p {
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .links a::after { content: " ↗"; font-size: 12px; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 22px 0 38px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 760px) {
+      nav { align-items: flex-start; flex-direction: column; padding: 14px 0; }
+      .navlinks { gap: 12px; }
+      .layout { grid-template-columns: 1fr; gap: 30px; padding-top: 30px; }
+      .sidebar { position: static; }
+      .headshot { width: 150px; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Daniel Prakah-Asante",
+    "url": "https://dasante78.github.io/",
+    "sameAs": [
+      "https://github.com/dasante78",
+      "https://www.linkedin.com/in/daniel-prakah-asante",
+      "https://scholar.google.com/citations?view_op=list_works&hl=en&user=P2hWmVAAAAAJ",
+      "https://ecgfix.csail.mit.edu/"
+    ],
+    "knowsAbout": ["machine learning", "clinical AI", "ECG representation learning", "computer vision", "robotics"]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header>
+    <nav class="wrap" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Daniel Prakah-Asante home">
+        <span>Daniel Prakah-Asante</span>
+      </a>
+      <div class="navlinks">
+        <a href="#about">About</a>
+        <a href="#papers">Papers</a>
+        <a href="#projects">Projects</a>
+        <a href="https://github.com/dasante78">GitHub</a>
+        <a href="https://www.linkedin.com/in/daniel-prakah-asante">LinkedIn</a>
+        <a href="https://scholar.google.com/citations?view_op=list_works&amp;hl=en&amp;user=P2hWmVAAAAAJ">Google Scholar</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="wrap layout" id="content">
+    <aside class="sidebar" id="top" aria-label="Profile">
+      <img class="headshot" src="Daniel_Prakah-Asante_%20Headshot.jpg" alt="Daniel Prakah-Asante headshot" />
+      <h1>Daniel Prakah-Asante</h1>
+      <p class="follow-title">Follow</p>
+      <ul class="follow">
+        <li><a href="https://github.com/dasante78">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/daniel-prakah-asante">LinkedIn</a></li>
+        <li><a href="https://scholar.google.com/citations?view_op=list_works&amp;hl=en&amp;user=P2hWmVAAAAAJ">Google Scholar</a></li>
         <li><a href="mailto:dprakahsasnate@alum.mit.edu">Contact</a></li>
       </ul>
     </aside>
